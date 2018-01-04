@@ -19,10 +19,10 @@ class Project extends React.Component {
         return(
             <section onClick={()=> window.open(this.props.link, "_blank")}>
                 <ReactCardFlip className="card" isFlipped={this.state.isFlipped}>
-                    <div onMouseEnter={this.handleClick} key="back">
+                    <div onMouseLeave={this.handleClick} key="back">
                         <Image  src={frenchie} circle responsive/>
                     </div>
-                    <div onMouseLeave={this.handleClick} key="front">
+                    <div onMouseEnter={this.handleClick} key="front">
                         <p className="circle">{this.props.title}</p>
                     </div>                    
                 </ReactCardFlip>
