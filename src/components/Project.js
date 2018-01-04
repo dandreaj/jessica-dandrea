@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
 import ReactCardFlip from 'react-card-flip';
+import frenchie from '../assets/happy_frenchie.png';
 
 class Project extends React.Component {
     constructor(props) {
@@ -18,10 +19,10 @@ class Project extends React.Component {
         return(
             <section onClick={()=> window.open(this.props.link, "_blank")}>
                 <ReactCardFlip className="card" isFlipped={this.state.isFlipped}>
-                    <div onMouseEnter={this.handleClick} key="front">
-                        <Image  src={this.props.photo} circle responsive/>
+                    <div onMouseEnter={this.handleClick} key="back">
+                        <Image  src={frenchie} circle responsive/>
                     </div>
-                    <div onMouseLeave={this.handleClick} key="back">
+                    <div onMouseLeave={this.handleClick} key="front">
                         <p className="circle">{this.props.title}</p>
                     </div>                    
                 </ReactCardFlip>

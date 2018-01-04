@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, Col, Alert } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, Col, Modal, Image } from 'react-bootstrap';
 import FaLinkedinSquare from 'react-icons/lib/fa/linkedin-square';
 import FaGithubSquare from 'react-icons/lib/fa/github-square';
 import FaInstagram from 'react-icons/lib/fa/instagram';
-
+import wally from '../assets/wally.png'
 import Footer from './Footer';
 
 class Contact extends React.Component {
@@ -14,7 +14,7 @@ class Contact extends React.Component {
             email: '',
             message: '',
             organization: '',
-            alertVisible: false,
+            showModal: false,
         }
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -36,7 +36,7 @@ class Contact extends React.Component {
                 email: '',
                 message: '',
                 organization: '',
-                alertVisible: true,
+                showModal: true,
             })
         });
     }
@@ -44,26 +44,25 @@ class Contact extends React.Component {
     onChange(e) {
         let form = {}
         form[e.target.name] = e.target.value;
-        this.setState(form)
+        this.setState(form);
     }
 
     onDismiss() {
-        this.setState({ alertVisible: false });
+        this.setState({ showModal: false });
     }
 
     render() {
         return(
             <div className="Contact">
-            { this.state.alertVisible &&
-            <Alert onDismiss={this.onDismiss}>
-                <h4>Thanks for your message!</h4>
-                <p>I will respond to you as soon as possible :)</p>
-                <p>
-                    <Button onClick={this.onDismiss}>Close</Button>
-                </p>
-            </Alert>
-            }
+				<Modal show={this.state.showModal} onHide={this.onDismiss}>
+					<Modal.Header closeButton>
+						<Modal.Title>Thanks for your message!</Modal.Title>
+					</Modal.Header>
+				</Modal>
+                
             <div className="Content">
+                
+                <Image  src={wally} responsive/>
                 <div className="form accent">
                     <div className="icons">
                         <a href="https://www.linkedin.com/in/jessica-dandrea/" target="_blank" rel="noopener noreferrer">
@@ -91,7 +90,7 @@ class Contact extends React.Component {
                         <FormControl
                             onChange={this.onChange}
                             type="text"
-                            placeholder="EMAIL ADDRESS"
+                            placeholder="EMAIL"
                             name="email"
                             value={this.state.email}
                         />
@@ -107,7 +106,7 @@ class Contact extends React.Component {
                     </Col>
                     <Col xs={12} sm={6}>
                     <form className="message">
-                        <FormControl onChange={this.onChange} className="message" componentClass="textarea" placeholder="MESSAGE" name="message" />
+                        <FormControl onChange={this.onChange} value={this.state.message} className="message" componentClass="textarea" placeholder="MESSAGE" name="message" />
                     </form>
                     </Col>
                     <Button onClick={this.sendMessage}>SEND</Button>
