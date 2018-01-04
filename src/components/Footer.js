@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const Footer = () => {
     const year = moment().year();
-    const footerText = "  " + year + " JESSICA D'ANDREA ALL RIHGTS RESERVED.";
+    const footerText = "  " + year + " Jessica D'Andrea All rights reserved.";
     return (
         <div className="Footer accent"><FaCopyright/>{footerText}</div>
     )

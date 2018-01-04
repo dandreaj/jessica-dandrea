@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, Col } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, Col, Alert } from 'react-bootstrap';
 import FaLinkedinSquare from 'react-icons/lib/fa/linkedin-square';
 import FaGithubSquare from 'react-icons/lib/fa/github-square';
 import FaInstagram from 'react-icons/lib/fa/instagram';
@@ -13,10 +13,12 @@ class Contact extends React.Component {
             name:'',
             email: '',
             message: '',
-            organization: ''
+            organization: '',
+            alertVisible: false,
         }
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
     }
 
     sendMessage() {
@@ -28,7 +30,15 @@ class Contact extends React.Component {
             },
             body: JSON.stringify(this.state)
         })
-        .then(response => console.log(response));
+        .then(response => {
+            this.setState({
+                name:'',
+                email: '',
+                message: '',
+                organization: '',
+                alertVisible: true,
+            })
+        });
     }
 
     onChange(e) {
@@ -37,9 +47,22 @@ class Contact extends React.Component {
         this.setState(form)
     }
 
+    onDismiss() {
+        this.setState({ alertVisible: false });
+    }
+
     render() {
         return(
             <div className="Contact">
+            { this.state.alertVisible &&
+            <Alert onDismiss={this.onDismiss}>
+                <h4>Thanks for your message!</h4>
+                <p>I will respond to you as soon as possible :)</p>
+                <p>
+                    <Button onClick={this.onDismiss}>Close</Button>
+                </p>
+            </Alert>
+            }
             <div className="Content">
                 <div className="form accent">
                     <div className="icons">
