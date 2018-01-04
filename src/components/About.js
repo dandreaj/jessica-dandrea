@@ -1,28 +1,17 @@
 import React from 'react';
-import { PageHeader, Image, Grid, Col, Row } from 'react-bootstrap';
-import me from '../assets/IMG_1449.JPG'
+import { Image, Col } from 'react-bootstrap';
+import me from '../assets/profile.JPG'
 
 const About = () => {
     return (
         <div className="About">
-            <PageHeader bsClass="header">About</PageHeader>
-            <div className="Content">
-            <Col xs={12} md={4}>
-                <Image className="Profile" src={me} circle/>
+            <div className="About-Content">
+            <Col xs={12} md={5}>
+                <Image className="Profile" src={me}/>
             </Col>
-            <Col xs={12} md={8}>
+            <Col xs={12} md={7}>
                 <p className="Profile">Hi there! My name is Jessica D'Andrea and I am a self-taught full stack engineer. I am currently a Technologist at PwC within their New Ventures organzation. I spend most of my free time teaching myself new things or chasing my fur-child (Wally) around. Don't forget to check out some of my latest personal projects!</p>
-            </Col>    
-                {/* <Grid>
-                    <Row>
-                        <Col xs={12} md={4}>
-                            <Image className="Profile" src={me} responsive circle/>
-                        </Col>
-                        <Col xs={12} md={8}>
-                            <p>Hi there! My name is Jessica D'Andrea and I am a self-taught full stack engineer. I am currently a Technologist at PwC within their New Ventures organzation. I spend most of my free time teaching myself new things or chasing my fur-child (Wally) around. Don't forget to check out some of my latest personal projects!</p>
-                        </Col>
-                    </Row>
-                </Grid> */}
+            </Col>
             </div>
         </div>
     )
